@@ -13,9 +13,17 @@ const MENU_ITEMS = [
   { id: 'fan', name: 'Ceiling Fans', path: '/products/fans' }
 ];
 
+const SUPPORT_ITEMS = [
+  { name: 'FAQs', path: '/support/faqs' },
+  { name: 'File a Complaint', path: '/support/complaint' },
+  { name: 'E-Waste Policy', path: '/support/e-waste' },
+  { name: 'Downloads', path: '/support/downloads' }
+];
+
 export default function Navbar() {
   const pathname = usePathname();
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [productOpen, setProductOpen] = useState(false);
+  const [supportOpen, setSupportOpen] = useState(false);
 
   return (
     <header className="w-full bg-[#070A13]/60 backdrop-blur-xl border-b border-white/10 fixed top-0 left-0 right-0 z-50">
@@ -33,26 +41,19 @@ export default function Navbar() {
             Home
           </Link>
           
-          {/* Dropdown Hover Container */}
+          {/* Products Dropdown */}
           <div 
-            className="relative h-full flex items-center cursor-pointer group"
-            onMouseEnter={() => setDropdownOpen(true)}
-            onMouseLeave={() => setDropdownOpen(false)}
+            className="relative h-full flex items-center cursor-pointer"
+            onMouseEnter={() => setProductOpen(true)}
+            onMouseLeave={() => setProductOpen(false)}
           >
             <span className={`transition-all duration-200 flex items-center gap-1 ${pathname.startsWith('/products') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
               Products ▼
             </span>
-
-            {/* Dropdown Card Grid */}
-            <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-64 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${dropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+            <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-64 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${productOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
               <div className="flex flex-col space-y-2">
                 {MENU_ITEMS.map((item) => (
-                  <Link 
-                    key={item.id} 
-                    href={item.path}
-                    onClick={() => setDropdownOpen(false)}
-                    className="p-2 text-left rounded-lg text-xs hover:bg-white/5 text-gray-300 hover:text-cyan-400 transition"
-                  >
+                  <Link key={item.id} href={item.path} onClick={() => setProductOpen(false)} className="p-2 rounded-lg text-xs hover:bg-white/5 text-gray-300 hover:text-cyan-400 transition">
                     {item.name}
                   </Link>
                 ))}
@@ -60,9 +61,29 @@ export default function Navbar() {
             </div>
           </div>
 
-          <a href="#" className="text-gray-400 hover:text-white transition-all duration-200">
-            About Us
-          </a>
+          {/* New Support Dropdown Component */}
+          <div 
+            className="relative h-full flex items-center cursor-pointer"
+            onMouseEnter={() => setSupportOpen(true)}
+            onMouseLeave={() => setSupportOpen(false)}
+          >
+            <span className={`transition-all duration-200 flex items-center gap-1 ${pathname.startsWith('/support') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+              Support ▼
+            </span>
+            <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-56 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${supportOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+              <div className="flex flex-col space-y-2">
+                {SUPPORT_ITEMS.map((item, idx) => (
+                  <Link key={idx} href={item.path} onClick={() => setSupportOpen(false)} className="p-2 rounded-lg text-xs hover:bg-white/5 text-gray-300 hover:text-cyan-400 transition">
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <Link href="/contact" className={`transition-all duration-200 ${pathname === '/contact' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+            Contact
+          </Link>
         </nav>
 
         <span className="hidden sm:inline-block text-[9px] font-mono tracking-[0.2em] bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-cyan-400">
