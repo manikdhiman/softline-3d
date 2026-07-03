@@ -2,14 +2,44 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function SupportDynamicPage() {
   const { slug } = useParams();
+  
+  // Controls accordion item toggling behavior
+  const [activeTab, setActiveTab] = useState(null);
+
+  const toggleTab = (index) => {
+    if (activeTab === index) {
+      setActiveTab(null); // Second click: hide content cleanly
+    } else {
+      setActiveTab(index); // First click: expand selected item
+    }
+  };
+
+  const COMPLAINT_ACCORDION = [
+    {
+      title: "1. How do I register a formal hardware product complaint?",
+      content: "To initiate an engineering service file, check the silver sticker badge situated near your appliance motor base array to capture your active Batch Serial ID. Reach out directly to our central support command line at +91 8295433063 or submit your specific problem framework logs to softlineindustriesknl@gmail.com for immediate technician assignment."
+    },
+    {
+      title: "2. What is the standard response time for a registered ticket?",
+      content: "Our operational service matrix processes incoming service claims within 24 working hours. Once validated, an authorized field repair engineer will be dispatched to your location coordinates for diagnostic testing and resolution management."
+    },
+    {
+      title: "3. How can I trace the active status of my unresolved service case?",
+      content: "Every registered hardware complaint generates a unique chronological case reference ticket. You can receive real-time updates regarding components, replacement lead times, or scheduling windows by tracking directly with our customer desk during active business hours (9:00 AM – 6:00 PM)."
+    },
+    {
+      title: "4. What documentation is required to claim localized warranty processing?",
+      content: "You must provide your official purchase cash memo bill validation sheet alongside the authentic stamped warranty booklet card issued by your authorized Softline regional distribution partner at the point of trade configuration."
+    }
+  ];
 
   return (
     <main className="max-w-4xl mx-auto w-full p-6 md:p-12 text-white flex-1 flex flex-col justify-center">
       
-      {/* Back Reference Navigation */}
       <div className="mb-6">
         <Link href="/" className="text-xs font-mono text-gray-500 hover:text-cyan-400 transition">← Return to Home</Link>
       </div>
@@ -32,23 +62,47 @@ export default function SupportDynamicPage() {
         </div>
       )}
 
-      {/* RENDER VIEW 2: File a Complaint Input Form */}
+      {/* REBUILT RENDER VIEW 2: Interactive Toggle Complaint Support Matrix */}
       {slug === 'complaint' && (
-        <form onSubmit={(e) => { e.preventDefault(); alert('Complaint filed successfully.'); }} className="bg-[#0d1527]/40 border border-white/10 p-8 rounded-2xl space-y-4">
-          <h1 className="text-3xl font-black uppercase tracking-tight text-white">Service Support Ticket</h1>
-          <p className="text-xs text-gray-400 font-mono">File an official claim case regarding hardware, repair engineering, or component support.</p>
+        <div className="bg-[#0d1527]/40 border border-white/10 p-6 md:p-8 rounded-2xl space-y-6">
+          <div>
+            <h1 className="text-3xl font-black uppercase tracking-tight text-white">Customer Complaint Resolution</h1>
+            <p className="text-xs text-gray-400 font-mono mt-1">Select your specific inquiry path below. Click once to view solution instructions, click again to collapse.</p>
+          </div>
+          
           <hr className="border-white/10" />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="text" required placeholder="Product Serial Batch ID Number" className="bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-xs font-mono text-white focus:border-cyan-400 outline-none" />
-            <input type="text" required placeholder="Date of Purchase" className="bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-xs font-mono text-white focus:border-cyan-400 outline-none" />
+          <div className="space-y-3">
+            {COMPLAINT_ACCORDION.map((item, index) => (
+              <div 
+                key={index} 
+                className="border border-white/5 bg-[#070A13]/40 rounded-xl overflow-hidden transition-all duration-300"
+              >
+                {/* Trigger Row Element */}
+                <button
+                  onClick={() => toggleTab(index)}
+                  className="w-full text-left p-4 flex justify-between items-center hover:bg-white/5 transition-colors focus:outline-none"
+                >
+                  <span className="text-xs font-bold font-mono tracking-wide text-white group-hover:text-cyan-400">
+                    {item.title}
+                  </span>
+                  <span className={`text-xs font-mono transition-transform duration-300 ${activeTab === index ? 'text-cyan-400 rotate-180' : 'text-gray-500'}`}>
+                    ▼
+                  </span>
+                </button>
+
+                {/* Collapsible content tray controlled by structural state conditions */}
+                <div 
+                  className={`transition-all duration-300 ease-in-out font-mono text-xs text-gray-400 leading-relaxed overflow-hidden ${
+                    activeTab === index ? 'max-h-60 p-4 pt-0 border-t border-white/5 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  {item.content}
+                </div>
+              </div>
+            ))}
           </div>
-          <textarea rows="4" required placeholder="Elaborate on hardware malfunction behaviors..." className="bg-white/5 border border-white/10 p-4 rounded-lg text-xs font-mono text-white focus:border-cyan-400 outline-none resize-none" />
-          
-          <button type="submit" className="w-full bg-blue-600 hover:bg-blue-500 font-bold text-xs uppercase tracking-widest py-4 rounded-xl transition shadow-lg shadow-blue-600/20">
-            Submit Support Ticket
-          </button>
-        </form>
+        </div>
       )}
 
       {/* RENDER VIEW 3: E-Waste Environmental Protection Policy */}
