@@ -10,7 +10,7 @@ const LOOKUP_DATA = {
   'washing': { title: 'WASHING MACHINES', tag: 'Heavy-duty system hardware.' },
   'grinder': { title: 'MIXER GRINDERS', tag: 'High-torque culinary powerhouses.' },
   'geyser': { title: 'WATER GEYSERS', tag: 'Thermal glass insulated cores.' },
-  { id: 'fan', title: 'CEILING FANS', tag: 'Aerodynamic fluid dynamics.' }
+  'fan': { title: 'CEILING FANS', tag: 'Aerodynamic fluid dynamics.' }
 };
 
 export default function ProductShowcase() {
@@ -30,7 +30,7 @@ export default function ProductShowcase() {
             ← Return to Spec Sheet
           </button>
           <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase hidden sm:block bg-cyan-500/10 border border-cyan-500/20 px-4 py-1.5 rounded-full">
-            Premium Exhibition Focus Mode active
+            Premium Exhibition Focus Mode Active
           </div>
         </header>
 
