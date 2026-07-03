@@ -51,7 +51,7 @@ export default function Home() {
         <div className="hidden md:flex justify-center items-center">
           <div className="w-80 h-80 rounded-full bg-gradient-to-tr from-blue-600/20 to-cyan-400/10 border border-cyan-500/20 flex items-center justify-center relative animate-pulse">
             <div className="w-60 h-60 rounded-full bg-gradient-to-br from-[#0d1527] to-[#070A13] border border-white/5 flex flex-col items-center justify-center p-6 text-center shadow-2xl">
-              <span className="text-2xl font-black text-cyan-400">15+</span>
+              <span className="text-2xl font-black text-cyan-400">17+</span>
               <span className="text-[10px] uppercase tracking-widest text-gray-400 mt-1 font-mono">Years of Excellence</span>
             </div>
           </div>
