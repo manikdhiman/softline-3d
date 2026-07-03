@@ -13,13 +13,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#070A13]`}>
-        {/* Global Navigation Wrapper */}
-        <div className="relative z-50 p-6 pb-0 max-w-7xl mx-auto w-full">
-          <Navbar />
+      <body className={`${inter.className} bg-[#070A13] min-h-screen flex flex-col`}>
+        {/* Main Global Navbar rendered perfectly flat at root level */}
+        <Navbar />
+        
+        {/* Uniform Top Offset Container buffer spacing */}
+        <div className="flex-1 pt-20 flex flex-col">
+          {children}
         </div>
         
-        {children}
         <Loader />
       </body>
     </html>
