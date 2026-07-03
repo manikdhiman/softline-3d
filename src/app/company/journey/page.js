@@ -59,6 +59,14 @@ export default function OurJourneyPage() {
     }
   ];
 
+  const ROADMAP_VECTORS = [
+    { num: '01', title: 'Product Innovation', desc: 'Continuous deployment of advanced engineering architectures and smart system integrations across all appliance categories.' },
+    { num: '02', title: 'Market Expansion', desc: 'Expanding physical supply pipelines and corporate visibility across new regional trade markets nationwide.' },
+    { num: '03', title: 'Network Strength', desc: 'Reinforcing a robust, highly communicative network of trusted dealers, distributors, and franchise partners.' },
+    { num: '04', title: 'Service Centers', desc: 'Scaling up customer-centric service technical desks to ensure flawless, immediate after-sales support.' },
+    { num: '05', title: 'Modern Manufacturing', desc: 'Integrating high-speed automated production assemblies and precision quality control testing protocols.' }
+  ];
+
   return (
     <main className="min-h-screen text-white bg-[#070A13] flex flex-col justify-between">
       
@@ -93,7 +101,7 @@ export default function OurJourneyPage() {
         </div>
       </section>
 
-      {/* NEW SECTION 3: OUR STORY, CHAPTER BY CHAPTER (From image_ea32a9.png series) */}
+      {/* NEW SECTION 3: OUR STORY, CHAPTER BY CHAPTER */}
       <section className="w-full max-w-4xl mx-auto px-6 pb-20 space-y-8">
         <div>
           <h2 className="text-2xl font-black uppercase tracking-tight text-white">Our Story, Chapter by Chapter</h2>
@@ -178,26 +186,53 @@ export default function OurJourneyPage() {
         </div>
       </section>
 
-      {/* SECTION 7: FUTURE ROADMAP AND BEYOND PANEL */}
-      <section className="w-full bg-[#090d16] border-t border-white/10 py-20 font-mono">
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-6 text-center md:text-left">
-            Moving Towards 2026 & Beyond
-          </h2>
+      {/* UPGRADED HIGH-TECH SECTION 7: FUTURE ROADMAP DESIGN GRID (From image_ea3a4b.png) */}
+      <section className="w-full bg-[#090d16] border-t border-white/10 py-24 font-mono">
+        <div className="max-w-6xl mx-auto px-6">
           
-          <ul className="space-y-3 text-xs text-gray-300 mb-8 pl-2">
-            <li className="flex items-center gap-3"><span className="text-cyan-400">⚡</span> Continuous product innovation</li>
-            <li className="flex items-center gap-3"><span className="text-cyan-400">⚡</span> Expansion into new markets</li>
-            <li className="flex items-center gap-3"><span className="text-cyan-400">⚡</span> Strong dealer and distributor network</li>
-            <li className="flex items-center gap-3"><span className="text-cyan-400">⚡</span> Customer-centric service support</li>
-            <li className="flex items-center gap-3"><span className="text-cyan-400">⚡</span> Modern manufacturing techniques</li>
-          </ul>
+          <div className="mb-12 text-center md:text-left">
+            <span className="text-xs tracking-[0.3em] text-cyan-400 uppercase block mb-2">Corporate Horizon</span>
+            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight text-white">
+              Moving Towards 2026 & Beyond
+            </h2>
+            <div className="w-16 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-600 mt-3 mx-auto md:mx-0" />
+          </div>
+          
+          {/* Replaced old text list with an asymmetric feature grid matrix */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {ROADMAP_VECTORS.map((vector, idx) => (
+              <div 
+                key={idx}
+                className="bg-[#070A13]/80 border border-white/15 p-6 rounded-xl relative overflow-hidden group hover:border-cyan-400/50 transition-all duration-300"
+              >
+                {/* Decorative background index accent typography */}
+                <div className="absolute right-3 top-1 text-3xl font-black text-white/[0.02] select-none tracking-tighter group-hover:text-cyan-400/[0.04] transition-colors">
+                  {vector.num}
+                </div>
+                
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-xs text-cyan-400 animate-pulse">⚡</span>
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-white group-hover:text-cyan-400 transition-colors">
+                    {vector.title}
+                  </h4>
+                </div>
+                
+                <p className="text-[11px] text-gray-500 leading-relaxed">
+                  {vector.desc}
+                </p>
+              </div>
+            ))}
+          </div>
 
-          <hr className="border-white/5 mb-6" />
+          <hr className="border-white/5 mb-10" />
           
-          <p className="text-xs text-cyan-400 font-bold leading-relaxed text-center md:text-left">
-            Our goal is simple — to become a household name known for trust, durability, affordability, and performance.
-          </p>
+          {/* Upgraded Concluding Goal Statement Banner */}
+          <div className="bg-gradient-to-r from-blue-900/10 via-cyan-900/5 to-transparent border-l-2 border-cyan-400 p-6 rounded-r-xl">
+            <p className="text-xs md:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-gray-200 leading-relaxed">
+              Our goal is simple — to become a household name known for trust, durability, affordability, and performance.
+            </p>
+          </div>
+          
         </div>
       </section>
 
