@@ -48,26 +48,15 @@ export default function ProductsPage() {
   const activeProduct = PRODUCT_DATA.find(p => p.id === activeId);
 
   return (
-    <main className="relative min-h-screen text-white bg-[#070A13] overflow-x-hidden">
+    <main className="relative min-h-[calc(100vh-80px)] text-white overflow-x-hidden">
       {/* 3D WebGL Context Layer */}
       <SceneCanvas activeId={activeId} />
 
       {/* Premium UI Overlay Layer */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-between p-6 md:p-10 pointer-events-none">
+      <div className="relative z-10 min-h-[calc(100vh-80px)] flex flex-col justify-between p-6 md:p-10 pointer-events-none">
         
-        {/* Navigation Banner */}
-        <header className="w-full max-w-7xl mx-auto flex justify-between items-center bg-[#0d1527]/60 backdrop-blur-xl border border-white/10 px-8 py-4 rounded-full pointer-events-auto">
-          <div className="flex items-center space-x-3">
-            <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse" />
-            <Link href="/" className="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">SOFTLINE</Link>
-          </div>
-          <span className="text-[10px] uppercase tracking-[0.2em] bg-white/5 border border-white/10 px-4 py-1 rounded-full text-cyan-400 font-mono">
-            ESTD 2009
-          </span>
-        </header>
-
         {/* Technical Data Specification Sheet */}
-        <div className="w-full max-w-7xl mx-auto my-auto pt-12 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <div className="w-full max-w-7xl mx-auto my-auto pt-4 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-4 bg-[#0d1527]/70 backdrop-blur-xl border border-white/10 p-6 rounded-2xl pointer-events-auto shadow-2xl shadow-black/50">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400 block mb-1">
               {activeProduct.category}
@@ -88,7 +77,6 @@ export default function ProductsPage() {
               ))}
             </div>
 
-            {/* Link to the Cinematic View sub-section */}
             <Link href="/products/showcase" className="w-full border border-cyan-400/30 hover:bg-cyan-400/10 text-cyan-400 font-bold text-xs uppercase tracking-wider py-3 rounded-xl text-center transition block mt-6">
               Switch to Cinematic View
             </Link>

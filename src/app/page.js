@@ -4,22 +4,8 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#070A13] text-white flex flex-col justify-between p-6 md:p-12">
+    <main className="min-h-[calc(100vh-80px)] text-white flex flex-col justify-between p-6 md:p-12">
       
-      {/* Top Header Row */}
-      <header className="w-full max-w-7xl mx-auto flex justify-between items-center py-4">
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-cyan-400 rounded-full" />
-          <span className="text-xl font-black tracking-widest">SOFTLINE</span>
-        </div>
-        <nav className="hidden md:flex space-x-8 text-sm text-gray-400">
-          <Link href="/" className="text-cyan-400 font-semibold">Home</Link>
-          <Link href="/products" className="hover:text-white transition">Products</Link>
-          <a href="#" className="hover:text-white transition">About Us</a>
-          <a href="#" className="hover:text-white transition">Contact</a>
-        </nav>
-      </header>
-
       {/* Main Minimalist Hero Section */}
       <div className="w-full max-w-7xl mx-auto my-auto text-center md:text-left py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
         <div>
@@ -37,7 +23,6 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-            {/* Navigates directly to your interactive 3D product showcase */}
             <Link href="/products" className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-xl text-center transition shadow-lg shadow-blue-600/20">
               Explore 3D Catalog
             </Link>
@@ -51,7 +36,7 @@ export default function Home() {
         <div className="hidden md:flex justify-center items-center">
           <div className="w-80 h-80 rounded-full bg-gradient-to-tr from-blue-600/20 to-cyan-400/10 border border-cyan-500/20 flex items-center justify-center relative animate-pulse">
             <div className="w-60 h-60 rounded-full bg-gradient-to-br from-[#0d1527] to-[#070A13] border border-white/5 flex flex-col items-center justify-center p-6 text-center shadow-2xl">
-              <span className="text-2xl font-black text-cyan-400">17+</span>
+              <span className="text-2xl font-black text-cyan-400">15+</span>
               <span className="text-[10px] uppercase tracking-widest text-gray-400 mt-1 font-mono">Years of Excellence</span>
             </div>
           </div>

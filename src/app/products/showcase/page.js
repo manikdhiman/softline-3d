@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import SceneCanvas from '@/components/3d/SceneCanvas';
-import Link from 'next/link';
 
 const SHORT_DATA = [
   { id: 'cooler', title: 'AIR COOLERS', tag: 'High-Velocity industrial cooling cells.' },
@@ -18,23 +17,22 @@ export default function ProductShowcase() {
   const activeProduct = SHORT_DATA.find(p => p.id === activeId) || SHORT_DATA[0];
 
   return (
-    <main className="relative min-h-screen text-white bg-[#0B0F19] overflow-x-hidden">
+    <main className="relative min-h-[calc(100vh-80px)] text-white overflow-x-hidden">
       {/* Background 3D Viewport Layer */}
       <SceneCanvas activeId={activeId} />
 
       {/* Front-facing interface typography overlay */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-between p-8 md:p-16 pointer-events-none">
+      <div className="relative z-10 min-h-[calc(100vh-80px)] flex flex-col justify-between p-8 md:p-16 pointer-events-none">
         
-        {/* Upper Navigation Layer */}
-        <header className="w-full max-w-7xl mx-auto flex justify-between items-center pointer-events-auto">
-          <Link href="/products" className="text-xs font-mono tracking-widest text-gray-400 hover:text-cyan-400 transition uppercase">
-            ← Back to Tech Specs
-          </Link>
-          <div className="text-sm font-black tracking-widest text-cyan-400">PREMIUM SERIES</div>
+        {/* Upper Accent Label */}
+        <header className="w-full max-w-7xl mx-auto flex justify-end items-center pointer-events-auto">
+          <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase bg-cyan-500/10 border border-cyan-500/20 px-4 py-1 rounded-full">
+            Premium Exhibition Focus Mode
+          </div>
         </header>
 
         {/* Cinematic Centered Title Overlays */}
-        <div className="w-full max-w-7xl mx-auto my-auto pt-24">
+        <div className="w-full max-w-7xl mx-auto my-auto pt-12">
           <div className="max-w-xl pointer-events-auto">
             <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-none mb-4 uppercase select-none transition-all">
               SOFTLINE <br />
