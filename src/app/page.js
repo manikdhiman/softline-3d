@@ -1,119 +1,72 @@
 'use client';
 
-import { useState } from 'react';
-import SceneCanvas from '@/components/3d/SceneCanvas';
-
-const PRODUCT_DATA = [
-  { 
-    id: 'cooler', 
-    name: 'Tejas 100 Tower', 
-    category: 'Air Coolers',
-    specs: { type: 'Tower Plastic', capacity: '100L', motor: '1.75mm Copper', fan: '20" Aluminum' }
-  },
-  { 
-    id: 'tv', 
-    name: 'SL-4300 WebOS', 
-    category: 'LED Televisions',
-    specs: { display: '43" Ultra HD', system: 'WebOS 4K', audio: '20W Stereo', mount: 'Wall / Table' }
-  },
-  { 
-    id: 'washing', 
-    name: 'HydroCare Pro', 
-    category: 'Washing Machines',
-    specs: { capacity: '8.5 Kg', drive: 'Direct Inverter', cycles: '12 Smart Modes', tub: 'Diamond Steel' }
-  },
-  { 
-    id: 'grinder', 
-    name: 'TurboBlend 750', 
-    category: 'Mixer Grinders',
-    specs: { power: '750W High Torque', blades: 'SS-304 Hardened', speeds: '3 + Pulse', coupling: 'Nylon' }
-  },
-  { 
-    id: 'geyser', 
-    name: 'AquaTherm Glass', 
-    category: 'Water Geysers',
-    specs: { volume: '25 Liters', rating: '5-Star BEE', element: 'Glass-Lined', pressure: '8 Bar Rated' }
-  },
-  { 
-    id: 'fan', 
-    name: 'AeroBreeze V2', 
-    category: 'Ceiling Fans',
-    specs: { sweep: '1200 mm', coating: 'Dust-Resistant', speed: '400 RPM', power: '52W Eco' }
-  }
-];
+import Link from 'next/link';
 
 export default function Home() {
-  const [activeId, setActiveId] = useState('cooler');
-  const activeProduct = PRODUCT_DATA.find(p => p.id === activeId);
-
   return (
-    <main className="relative min-h-screen text-white bg-[#070A13] overflow-x-hidden">
-      {/* 3D WebGL Context Layer */}
-      <SceneCanvas activeId={activeId} />
+    <main className="min-h-screen bg-[#070A13] text-white flex flex-col justify-between p-6 md:p-12">
+      
+      {/* Top Header Row */}
+      <header className="w-full max-w-7xl mx-auto flex justify-between items-center py-4">
+        <div className="flex items-center space-x-2">
+          <div className="w-3 h-3 bg-cyan-400 rounded-full" />
+          <span className="text-xl font-black tracking-widest">SOFTLINE</span>
+        </div>
+        <nav className="hidden md:flex space-x-8 text-sm text-gray-400">
+          <Link href="/" className="text-cyan-400 font-semibold">Home</Link>
+          <Link href="/products" className="hover:text-white transition">Products</Link>
+          <a href="#" className="hover:text-white transition">About Us</a>
+          <a href="#" className="hover:text-white transition">Contact</a>
+        </nav>
+      </header>
 
-      {/* Premium UI Overlay Layer */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-between p-6 md:p-10 pointer-events-none">
-        
-        {/* Navigation Banner */}
-        <header className="w-full max-w-7xl mx-auto flex justify-between items-center bg-[#0d1527]/60 backdrop-blur-xl border border-white/10 px-8 py-4 rounded-full pointer-events-auto">
-          <div className="flex items-center space-x-3">
-            <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse" />
-            <span className="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">SOFTLINE</span>
-          </div>
-          <span className="text-[10px] uppercase tracking-[0.2em] bg-white/5 border border-white/10 px-4 py-1 rounded-full text-cyan-400 font-mono">
-            ESTD 2009
+      {/* Main Minimalist Hero Section */}
+      <div className="w-full max-w-7xl mx-auto my-auto text-center md:text-left py-20 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
+        <div>
+          <span className="text-xs font-mono tracking-[0.3em] text-cyan-400 uppercase block mb-3">
+            Welcome to Softline Industries
           </span>
-        </header>
-
-        {/* Technical Data Specification Sheet */}
-        <div className="w-full max-w-7xl mx-auto my-auto pt-12 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-          <div className="md:col-span-4 bg-[#0d1527]/70 backdrop-blur-xl border border-white/10 p-6 rounded-2xl pointer-events-auto shadow-2xl shadow-black/50">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400 block mb-1">
-              {activeProduct.category}
+          <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-6">
+            PREMIUM HOUSEHOLD <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+              APPLIANCES.
             </span>
-            <h1 className="text-3xl font-black tracking-tight uppercase mb-4 text-white">
-              {activeProduct.name}
-            </h1>
-            
-            <hr className="border-white/10 mb-4" />
-            
-            {/* Spec Matrix Renderer */}
-            <div className="space-y-3 font-mono text-xs">
-              {Object.entries(activeProduct.specs).map(([key, value]) => (
-                <div key={key} className="flex justify-between border-b border-white/5 pb-2">
-                  <span className="text-gray-500 uppercase">{key}</span>
-                  <span className="text-gray-200 font-semibold text-right">{value}</span>
-                </div>
-              ))}
+          </h1>
+          <p className="text-gray-400 text-base md:text-lg mb-8 max-w-lg leading-relaxed">
+            Engineering high-performance air coolers, televisions, washing machines, and home electronics with absolute integrity. Discover durability built to last.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+            {/* Navigates directly to your interactive 3D product showcase */}
+            <Link href="/products" className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-xl text-center transition shadow-lg shadow-blue-600/20">
+              Explore 3D Catalog
+            </Link>
+            <a href="#" className="border border-white/10 hover:border-white/20 bg-white/5 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-xl text-center transition">
+              Learn More
+            </a>
+          </div>
+        </div>
+
+        {/* Right Side Visual Block */}
+        <div className="hidden md:flex justify-center items-center">
+          <div className="w-80 h-80 rounded-full bg-gradient-to-tr from-blue-600/20 to-cyan-400/10 border border-cyan-500/20 flex items-center justify-center relative animate-pulse">
+            <div className="w-60 h-60 rounded-full bg-gradient-to-br from-[#0d1527] to-[#070A13] border border-white/5 flex flex-col items-center justify-center p-6 text-center shadow-2xl">
+              <span className="text-2xl font-black text-cyan-400">15+</span>
+              <span className="text-[10px] uppercase tracking-widest text-gray-400 mt-1 font-mono">Years of Excellence</span>
             </div>
-
-            <button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider py-4 rounded-xl transition mt-6 shadow-lg shadow-blue-600/30">
-              Download Technical Spec Sheet
-            </button>
           </div>
         </div>
-
-        {/* Carousel Bottom Control Strip */}
-        <div className="w-full max-w-7xl mx-auto pointer-events-auto pt-6">
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-3 bg-[#070A13]/80 backdrop-blur-md border border-white/5 p-3 rounded-2xl">
-            {PRODUCT_DATA.map((product) => (
-              <button
-                key={product.id}
-                onClick={() => setActiveId(product.id)}
-                className={`flex flex-col text-left p-3 rounded-xl transition-all duration-300 border ${
-                  activeId === product.id
-                    ? 'bg-gradient-to-b from-blue-600/20 to-cyan-500/5 border-cyan-400 shadow-lg shadow-cyan-500/10'
-                    : 'bg-white/5 border-transparent hover:bg-white/10'
-                }`}
-              >
-                <span className="text-[9px] font-mono uppercase tracking-wider text-gray-500 mb-1">Select</span>
-                <span className="text-xs font-bold truncate text-white">{product.category}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
       </div>
+
+      {/* Footer Banner */}
+      <footer className="w-full max-w-7xl mx-auto border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500 font-mono">
+        <div>© 2026 Softline Industries. All rights reserved.</div>
+        <div className="space-x-4">
+          <a href="#" className="hover:text-gray-300">Privacy Policy</a>
+          <a href="#" className="hover:text-gray-300">Terms of Service</a>
+        </div>
+      </footer>
+
     </main>
   );
 }
