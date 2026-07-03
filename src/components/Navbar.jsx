@@ -35,7 +35,7 @@ export default function Navbar() {
 
   return (
     <header className="w-full bg-[#070A13]/60 backdrop-blur-xl border-b border-white/10 fixed top-0 left-0 right-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center relative">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
         
         <div className="flex items-center space-x-3">
           <div className="w-2.5 h-2.5 bg-cyan-400 rounded-full animate-pulse" />
@@ -46,29 +46,29 @@ export default function Navbar() {
         
         <nav className="flex space-x-8 text-xs font-mono tracking-wider uppercase items-center h-full">
           
-          {/* Home Link Section with Absolute Border Underline Alignment */}
-          <div className="relative h-full flex items-center">
+          {/* HOME LINK: Tight padding with inline underline anchor */}
+          <div className="relative pb-1.5 flex items-center">
             <Link 
               href="/" 
               className={`transition-all duration-200 ${pathname === '/' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}
             >
               Home
             </Link>
-            {pathname === '/' && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" />}
+            {pathname === '/' && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 rounded-full" />}
           </div>
           
-          {/* Products Dropdown Section with Absolute Border Underline Alignment */}
+          {/* PRODUCTS DROPDOWN: Tight padding with inline underline anchor */}
           <div 
-            className="relative h-full flex items-center cursor-pointer"
+            className="relative pb-1.5 flex items-center cursor-pointer"
             onMouseEnter={() => setProductOpen(true)}
             onMouseLeave={() => setProductOpen(false)}
           >
             <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/products') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
               Products ▼
             </span>
-            {isTabActive('/products') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" />}
+            {isTabActive('/products') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 rounded-full" />}
             
-            <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-64 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${productOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+            <div className={`absolute top-8 left-1/2 -translate-x-1/2 w-64 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 z-50 ${productOpen ? 'opacity-100 visible translate-y-2' : 'opacity-0 invisible translate-y-0'}`}>
               <div className="flex flex-col space-y-2">
                 {MENU_ITEMS.map((item) => (
                   <Link key={item.id} href={item.path} onClick={() => setProductOpen(false)} className={`p-2 rounded-lg text-xs transition block ${pathname === item.path ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}>
@@ -79,18 +79,18 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Company Dropdown Section with Absolute Border Underline Alignment */}
+          {/* COMPANY DROPDOWN: Tight padding with inline underline anchor */}
           <div 
-            className="relative h-full flex items-center cursor-pointer"
+            className="relative pb-1.5 flex items-center cursor-pointer"
             onMouseEnter={() => setCompanyOpen(true)}
             onMouseLeave={() => setCompanyOpen(false)}
           >
             <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/company') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
               Company ▼
             </span>
-            {isTabActive('/company') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" />}
+            {isTabActive('/company') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 rounded-full" />}
             
-            <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-48 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${companyOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+            <div className={`absolute top-8 left-1/2 -translate-x-1/2 w-48 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 z-50 ${companyOpen ? 'opacity-100 visible translate-y-2' : 'opacity-0 invisible translate-y-0'}`}>
               <div className="flex flex-col space-y-2">
                 {COMPANY_ITEMS.map((item, idx) => (
                   <Link key={idx} href={item.path} onClick={() => setCompanyOpen(false)} className={`p-2 rounded-lg text-xs transition block ${pathname === item.path ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}>
@@ -101,18 +101,18 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Support Dropdown Section with Absolute Border Underline Alignment */}
+          {/* SUPPORT DROPDOWN: Tight padding with inline underline anchor */}
           <div 
-            className="relative h-full flex items-center cursor-pointer"
+            className="relative pb-1.5 flex items-center cursor-pointer"
             onMouseEnter={() => setSupportOpen(true)}
             onMouseLeave={() => setSupportOpen(false)}
           >
             <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/support') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
               Support ▼
             </span>
-            {isTabActive('/support') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" />}
+            {isTabActive('/support') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 rounded-full" />}
             
-            <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-56 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${supportOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+            <div className={`absolute top-8 left-1/2 -translate-x-1/2 w-56 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 z-50 ${supportOpen ? 'opacity-100 visible translate-y-2' : 'opacity-0 invisible translate-y-0'}`}>
               <div className="flex flex-col space-y-2">
                 {SUPPORT_ITEMS.map((item, idx) => (
                   <Link key={idx} href={item.path} onClick={() => setSupportOpen(false)} className={`p-2 rounded-lg text-xs transition block ${pathname === item.path ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}>
@@ -123,15 +123,15 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Contact Link Section with Absolute Border Underline Alignment */}
-          <div className="relative h-full flex items-center">
+          {/* CONTACT LINK: Tight padding with inline underline anchor */}
+          <div className="relative pb-1.5 flex items-center">
             <Link 
               href="/contact" 
               className={`transition-all duration-200 ${pathname === '/contact' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}
             >
               Contact
             </Link>
-            {pathname === '/contact' && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" />}
+            {pathname === '/contact' && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 rounded-full" />}
           </div>
           
         </nav>
