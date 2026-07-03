@@ -34,7 +34,6 @@ function AnimatedStage({ activeId }) {
 {activeId === 'tv' && <boxGeometry args={[1.8, 1.0, 0.1]} />}
 {activeId === 'washing' && <cylinderGeometry args={[0.6, 0.6, 1.2, 32]} />}
 {activeId === 'grinder' && <coneGeometry args={[0.5, 1.1, 32]} />}
-{/* New Placeholders */}
 {activeId === 'geyser' && <cylinderGeometry args={[0.5, 0.5, 1.0, 32]} />}
 {activeId === 'fan' && <torusGeometry args={[0.6, 0.1, 16, 100]} />}
         
