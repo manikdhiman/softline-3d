@@ -42,54 +42,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 2: LIVE CORPORATE STATS PANEL (From image_e9b2a4.png) */}
+      {/* SECTION 2: LIVE CORPORATE STATS PANEL */}
       <section className="w-full bg-[#0d1527]/40 border-t border-b border-white/10 py-12 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div className="flex flex-col items-center">
-            <span className="text-2xl text-blue-500 mb-2">🏅</span>
-            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">17+</div>
+            <span className="text-2xl text-cyan-400 mb-2">🏅</span>
+            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">17+</div>
             <div className="text-xs text-gray-400 font-mono mt-1 uppercase tracking-wider">Years of Excellence</div>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-2xl text-blue-500 mb-2">👥</span>
-            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">1,000+</div>
+            <span className="text-2xl text-cyan-400 mb-2">👥</span>
+            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">1,000+</div>
             <div className="text-xs text-gray-400 font-mono mt-1 uppercase tracking-wider">Dealers Nationwide</div>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-2xl text-blue-500 mb-2">🏭</span>
-            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">5M+</div>
+            <span className="text-2xl text-cyan-400 mb-2">🏭</span>
+            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">5M+</div>
             <div className="text-xs text-gray-400 font-mono mt-1 uppercase tracking-wider">Products Manufactured</div>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-2xl text-blue-500 mb-2">🛡️</span>
-            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">500+</div>
+            <span className="text-2xl text-cyan-400 mb-2">🛡️</span>
+            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">500+</div>
             <div className="text-xs text-gray-400 font-mono mt-1 uppercase tracking-wider">Service Centers</div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 3: TRUST & INNOVATION FEATURES (From image_e9b2cb.jpg) */}
+      {/* SECTION 3: TRUST & INNOVATION FEATURES */}
       <section className="w-full max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           <span className="text-xs font-mono bg-blue-600/10 border border-blue-500/20 px-3 py-1 rounded text-cyan-400 uppercase tracking-widest">
             Since 2009
           </span>
           <h2 className="text-3xl md:text-4xl font-black mt-4 uppercase tracking-tight leading-tight">
-            Built on Trust, <span className="text-orange-500">Driven by Innovation</span>
+            Built on Trust, <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Driven by Innovation</span>
           </h2>
           <p className="text-gray-400 text-xs md:text-sm font-mono leading-relaxed mt-4">
             Founded in 2009 in Assandh, Haryana, Softline Industries has grown from iron air coolers to a trusted range of home appliances. Quality manufacturing, reliable components, and customer-focused design are at the heart of everything we do.
           </p>
           
           <ul className="mt-6 space-y-3 font-mono text-xs text-gray-300">
-            <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Quality Manufacturing at Every Step</li>
-            <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Durable & Reliable Components</li>
-            <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Customer-Focused Design</li>
-            <li className="flex items-center gap-2"><span className="text-emerald-400">✓</span> Responsible & Eco-Friendly Processes</li>
+            <li className="flex items-center gap-2"><span className="text-cyan-400">✓</span> Quality Manufacturing at Every Step</li>
+            <li className="flex items-center gap-2"><span className="text-cyan-400">✓</span> Durable & Reliable Components</li>
+            <li className="flex items-center gap-2"><span className="text-cyan-400">✓</span> Customer-Focused Design</li>
+            <li className="flex items-center gap-2"><span className="text-cyan-400">✓</span> Responsible & Eco-Friendly Processes</li>
           </ul>
 
           <div className="mt-8">
-            <Link href="/company/about" className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl transition shadow-lg shadow-orange-500/20">
+            <Link href="/company/about" className="inline-flex items-center bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl transition shadow-lg shadow-blue-600/20">
               Learn More About Us →
             </Link>
           </div>
@@ -101,14 +101,14 @@ export default function Home() {
             <span className="text-xs font-mono text-gray-400 block uppercase tracking-widest mb-2">[ Manufacturing Facility Viewport ]</span>
             <span className="text-[10px] text-gray-500 font-mono">Visual asset maps framing active high-speed automated appliance production assemblies</span>
           </div>
-          <div className="absolute -bottom-4 -left-4 bg-white text-black p-4 rounded-xl shadow-2xl font-mono text-center border border-gray-100">
-            <div className="text-lg font-black text-orange-500">17+</div>
+          <div className="absolute -bottom-4 -left-4 bg-[#0d1527] border border-white/10 text-white p-4 rounded-xl shadow-2xl font-mono text-center">
+            <div className="text-lg font-black text-cyan-400">17+</div>
             <div className="text-[9px] uppercase tracking-wider text-gray-500">Years Exp</div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 4: TESTIMONIAL FEEDBACK REVIEWS (From image_e9b307.png) */}
+      {/* SECTION 4: TESTIMONIAL FEEDBACK REVIEWS */}
       <section className="w-full bg-[#0d1527]/20 border-t border-white/5 py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -119,13 +119,13 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-[#070A13]/60 border border-white/10 p-6 rounded-xl flex flex-col justify-between shadow-xl">
               <div>
-                <div className="text-orange-400 text-xs tracking-wider mb-4">⭐⭐⭐⭐⭐</div>
+                <div className="text-cyan-400 text-xs tracking-wider mb-4">⭐⭐⭐⭐⭐</div>
                 <p className="text-xs text-gray-400 font-mono leading-relaxed">
                   &ldquo;Softline's iron cooler has been running flawlessly for two summers now. The build quality is excellent and the cooling is very effective even in peak heat. Highly recommended.&rdquo;
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-white/5 flex items-center space-x-3 font-mono text-xs">
-                <div className="w-8 h-8 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center font-bold">RK</div>
+                <div className="w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">RK</div>
                 <div>
                   <div className="font-bold text-white">Rajesh Kumar</div>
                   <div className="text-[10px] text-gray-500">Karnal · Air Cooler</div>
@@ -135,13 +135,13 @@ export default function Home() {
 
             <div className="bg-[#070A13]/60 border border-white/10 p-6 rounded-xl flex flex-col justify-between shadow-xl">
               <div>
-                <div className="text-orange-400 text-xs tracking-wider mb-4">⭐⭐⭐⭐⭐</div>
+                <div className="text-cyan-400 text-xs tracking-wider mb-4">⭐⭐⭐⭐⭐</div>
                 <p className="text-xs text-gray-400 font-mono leading-relaxed">
                   &ldquo;The LED TV picture quality is outstanding — colours are vivid and the display is very clear. Great value for money and the build feels premium.&rdquo;
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-white/5 flex items-center space-x-3 font-mono text-xs">
-                <div className="w-8 h-8 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center font-bold">PS</div>
+                <div className="w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">PS</div>
                 <div>
                   <div className="font-bold text-white">Priya Sharma</div>
                   <div className="text-[10px] text-gray-500">Panipat · LED Television</div>
@@ -151,13 +151,13 @@ export default function Home() {
 
             <div className="bg-[#070A13]/60 border border-white/10 p-6 rounded-xl flex flex-col justify-between shadow-xl">
               <div>
-                <div className="text-orange-400 text-xs tracking-wider mb-4">⭐⭐⭐⭐⭐</div>
+                <div className="text-cyan-400 text-xs tracking-wider mb-4">⭐⭐⭐⭐⭐</div>
                 <p className="text-xs text-gray-400 font-mono leading-relaxed">
                   &ldquo;As a dealer for Softline products, I can confidently say their coolers and washing machines have the lowest return rate in my store. Customers are always satisfied.&rdquo;
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-white/5 flex items-center space-x-3 font-mono text-xs">
-                <div className="w-8 h-8 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center font-bold">AP</div>
+                <div className="w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">AP</div>
                 <div>
                   <div className="font-bold text-white">Amit Patel</div>
                   <div className="text-[10px] text-gray-500">Ambala · Multiple Products</div>
@@ -168,7 +168,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 5: MASTER ENTERPRISE FOOTER SYSTEM (From image_e9b340.png) */}
+      {/* SECTION 5: MASTER ENTERPRISE FOOTER SYSTEM */}
       <footer className="w-full bg-[#090d16] border-t border-white/10 pt-16 pb-8 text-white font-mono">
         <div className="max-w-7xl mx-auto px-6">
           
@@ -178,7 +178,7 @@ export default function Home() {
               <h2 className="text-2xl font-black uppercase tracking-tight">Ready to Experience Quality?</h2>
               <p className="text-xs text-gray-400 mt-1">Connect with our team to discuss your requirements or find a dealer near you.</p>
               <div className="mt-4 flex flex-wrap gap-3">
-                <Link href="/contact" className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition">
+                <Link href="/contact" className="bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition">
                   Contact Us →
                 </Link>
                 <Link href="/contact" className="border border-white/10 hover:border-white/20 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition bg-white/5">
@@ -192,8 +192,8 @@ export default function Home() {
               <h4 className="text-xs font-bold uppercase tracking-wide mb-1 text-white">Stay Updated</h4>
               <p className="text-[11px] text-gray-500 mb-3">Subscribe to our newsletter for product launches and news.</p>
               <form onSubmit={(e) => { e.preventDefault(); alert('Subscription catalog log loaded.'); }} className="flex gap-2">
-                <input type="email" required placeholder="Enter your email" className="flex-1 bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-xs text-white outline-none focus:border-orange-500" />
-                <button type="submit" className="bg-orange-500 hover:bg-orange-600 p-2.5 rounded-lg text-white transition flex items-center justify-center">
+                <input type="email" required placeholder="Enter your email" className="flex-1 bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-xs text-white outline-none focus:border-cyan-400" />
+                <button type="submit" className="bg-blue-600 hover:bg-blue-500 px-4 rounded-lg text-white transition flex items-center justify-center">
                   ➔
                 </button>
               </form>
