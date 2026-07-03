@@ -18,17 +18,17 @@ export default function Navbar() {
           </Link>
         </div>
         
-        {/* Main Persistent Global Navigation TrackLinks */}
+        {/* Adjusted Main Persistent Navigation Link Blocks */}
         <nav className="flex space-x-8 text-xs font-mono tracking-wider uppercase">
           <Link href="/" className={`transition-all duration-200 ${pathname === '/' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
             Home
           </Link>
           <Link href="/products" className={`transition-all duration-200 ${pathname === '/products' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
-            Tech Specs
+            Products
           </Link>
-          <Link href="/products/showcase" className={`transition-all duration-200 ${pathname === '/products/showcase' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
-            Cinematic
-          </Link>
+          <a href="#" className="text-gray-400 hover:text-white transition-all duration-200">
+            About Us
+          </a>
         </nav>
 
         {/* Corporate Established Timestamp Tag */}

@@ -55,35 +55,45 @@ export default function ProductsPage() {
       {/* Premium UI Overlay Layer */}
       <div className="relative z-10 min-h-[calc(100vh-80px)] flex flex-col justify-between p-6 md:p-10 pointer-events-none">
         
-        {/* Technical Data Specification Sheet */}
-        <div className="w-full max-w-7xl mx-auto my-auto pt-4 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-          <div className="md:col-span-4 bg-[#0d1527]/70 backdrop-blur-xl border border-white/10 p-6 rounded-2xl pointer-events-auto shadow-2xl shadow-black/50">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400 block mb-1">
-              {activeProduct.category}
-            </span>
-            <h1 className="text-3xl font-black tracking-tight uppercase mb-4 text-white">
-              {activeProduct.name}
-            </h1>
-            
-            <hr className="border-white/10 mb-4" />
-            
-            {/* Spec Matrix Renderer */}
-            <div className="space-y-3 font-mono text-xs">
-              {Object.entries(activeProduct.specs).map(([key, value]) => (
-                <div key={key} className="flex justify-between border-b border-white/5 pb-2">
-                  <span className="text-gray-500 uppercase">{key}</span>
-                  <span className="text-gray-200 font-semibold text-right">{value}</span>
-                </div>
-              ))}
-            </div>
-
-            <Link href="/products/showcase" className="w-full border border-cyan-400/30 hover:bg-cyan-400/10 text-cyan-400 font-bold text-xs uppercase tracking-wider py-3 rounded-xl text-center transition block mt-6">
-              Switch to Cinematic View
+        {/* Technical Data Specification Sheet Grid wrapper */}
+        <div className="w-full max-w-7xl mx-auto my-auto pt-4 flex flex-col space-y-4">
+          
+          {/* Action Navigation: Dedicated Back Button */}
+          <div className="pointer-events-auto">
+            <Link href="/" className="inline-flex items-center text-xs font-mono tracking-wider text-gray-400 hover:text-cyan-400 transition-colors uppercase bg-white/5 border border-white/15 px-4 py-2 rounded-lg">
+              ← Back to Home
             </Link>
+          </div>
 
-            <button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider py-4 rounded-xl transition mt-2 shadow-lg shadow-blue-600/30">
-              Download Technical Spec Sheet
-            </button>
+          <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            <div className="md:col-span-4 bg-[#0d1527]/70 backdrop-blur-xl border border-white/10 p-6 rounded-2xl pointer-events-auto shadow-2xl shadow-black/50">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400 block mb-1">
+                {activeProduct.category}
+              </span>
+              <h1 className="text-3xl font-black tracking-tight uppercase mb-4 text-white">
+                {activeProduct.name}
+              </h1>
+              
+              <hr className="border-white/10 mb-4" />
+              
+              {/* Spec Matrix Renderer */}
+              <div className="space-y-3 font-mono text-xs">
+                {Object.entries(activeProduct.specs).map(([key, value]) => (
+                  <div key={key} className="flex justify-between border-b border-white/5 pb-2">
+                    <span className="text-gray-500 uppercase">{key}</span>
+                    <span className="text-gray-200 font-semibold text-right">{value}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link href="/products/showcase" className="w-full border border-cyan-400/30 hover:bg-cyan-400/10 text-cyan-400 font-bold text-xs uppercase tracking-wider py-3 rounded-xl text-center transition block mt-6">
+                Switch to Cinematic View
+              </Link>
+
+              <button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider py-4 rounded-xl transition mt-2 shadow-lg shadow-blue-600/30">
+                Download Technical Spec Sheet
+              </button>
+            </div>
           </div>
         </div>
 

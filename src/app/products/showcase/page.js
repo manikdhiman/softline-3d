@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import SceneCanvas from '@/components/3d/SceneCanvas';
+import Link from 'next/link';
 
 const SHORT_DATA = [
   { id: 'cooler', title: 'AIR COOLERS', tag: 'High-Velocity industrial cooling cells.' },
@@ -24,9 +25,12 @@ export default function ProductShowcase() {
       {/* Front-facing interface typography overlay */}
       <div className="relative z-10 min-h-[calc(100vh-80px)] flex flex-col justify-between p-8 md:p-16 pointer-events-none">
         
-        {/* Upper Accent Label */}
-        <header className="w-full max-w-7xl mx-auto flex justify-end items-center pointer-events-auto">
-          <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase bg-cyan-500/10 border border-cyan-500/20 px-4 py-1 rounded-full">
+        {/* Upper Action Panel Banner: Explicit Back Navigation */}
+        <header className="w-full max-w-7xl mx-auto flex justify-between items-center pointer-events-auto">
+          <Link href="/products" className="inline-flex items-center text-xs font-mono tracking-wider text-gray-400 hover:text-cyan-400 transition-colors uppercase bg-white/5 border border-white/15 px-4 py-2 rounded-lg">
+            ← Back to Tech Specs
+          </Link>
+          <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase hidden sm:block bg-cyan-500/10 border border-cyan-500/20 px-4 py-1.5 rounded-full">
             Premium Exhibition Focus Mode
           </div>
         </header>
