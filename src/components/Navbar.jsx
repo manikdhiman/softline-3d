@@ -35,7 +35,7 @@ export default function Navbar() {
 
   return (
     <header className="w-full bg-[#070A13]/60 backdrop-blur-xl border-b border-white/10 fixed top-0 left-0 right-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center relative">
         
         <div className="flex items-center space-x-3">
           <div className="w-2.5 h-2.5 bg-cyan-400 rounded-full animate-pulse" />
@@ -45,31 +45,29 @@ export default function Navbar() {
         </div>
         
         <nav className="flex space-x-8 text-xs font-mono tracking-wider uppercase items-center h-full">
-          {/* Home Link with Dynamic Color & Underline Highlight */}
-          <Link 
-            href="/" 
-            className={`transition-all duration-200 h-full flex items-center ${
-              pathname === '/' 
-                ? 'text-cyan-400 font-bold border-b-2 border-cyan-400' 
-                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
-            }`}
-          >
-            Home
-          </Link>
           
-          {/* Products Dropdown Tab Trigger */}
+          {/* Home Link Section with Absolute Border Underline Alignment */}
+          <div className="relative h-full flex items-center">
+            <Link 
+              href="/" 
+              className={`transition-all duration-200 ${pathname === '/' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}
+            >
+              Home
+            </Link>
+            {pathname === '/' && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" />}
+          </div>
+          
+          {/* Products Dropdown Section with Absolute Border Underline Alignment */}
           <div 
             className="relative h-full flex items-center cursor-pointer"
             onMouseEnter={() => setProductOpen(true)}
             onMouseLeave={() => setProductOpen(false)}
           >
-            <span className={`transition-all duration-200 h-full flex items-center gap-1 ${
-              isTabActive('/products') 
-                ? 'text-cyan-400 font-bold border-b-2 border-cyan-400' 
-                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
-            }`}>
+            <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/products') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
               Products ▼
             </span>
+            {isTabActive('/products') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" />}
+            
             <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-64 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${productOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
               <div className="flex flex-col space-y-2">
                 {MENU_ITEMS.map((item) => (
@@ -81,19 +79,17 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Company Dropdown Tab Trigger */}
+          {/* Company Dropdown Section with Absolute Border Underline Alignment */}
           <div 
             className="relative h-full flex items-center cursor-pointer"
             onMouseEnter={() => setCompanyOpen(true)}
             onMouseLeave={() => setCompanyOpen(false)}
           >
-            <span className={`transition-all duration-200 h-full flex items-center gap-1 ${
-              isTabActive('/company') 
-                ? 'text-cyan-400 font-bold border-b-2 border-cyan-400' 
-                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
-            }`}>
+            <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/company') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
               Company ▼
             </span>
+            {isTabActive('/company') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" />}
+            
             <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-48 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${companyOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
               <div className="flex flex-col space-y-2">
                 {COMPANY_ITEMS.map((item, idx) => (
@@ -105,19 +101,17 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Support Dropdown Tab Trigger */}
+          {/* Support Dropdown Section with Absolute Border Underline Alignment */}
           <div 
             className="relative h-full flex items-center cursor-pointer"
             onMouseEnter={() => setSupportOpen(true)}
             onMouseLeave={() => setSupportOpen(false)}
           >
-            <span className={`transition-all duration-200 h-full flex items-center gap-1 ${
-              isTabActive('/support') 
-                ? 'text-cyan-400 font-bold border-b-2 border-cyan-400' 
-                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
-            }`}>
+            <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/support') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
               Support ▼
             </span>
+            {isTabActive('/support') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" />}
+            
             <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-56 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${supportOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
               <div className="flex flex-col space-y-2">
                 {SUPPORT_ITEMS.map((item, idx) => (
@@ -129,17 +123,17 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Contact Link */}
-          <Link 
-            href="/contact" 
-            className={`transition-all duration-200 h-full flex items-center ${
-              pathname === '/contact' 
-                ? 'text-cyan-400 font-bold border-b-2 border-cyan-400' 
-                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
-            }`}
-          >
-            Contact
-          </Link>
+          {/* Contact Link Section with Absolute Border Underline Alignment */}
+          <div className="relative h-full flex items-center">
+            <Link 
+              href="/contact" 
+              className={`transition-all duration-200 ${pathname === '/contact' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}
+            >
+              Contact
+            </Link>
+            {pathname === '/contact' && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400" />}
+          </div>
+          
         </nav>
 
         <span className="hidden sm:inline-block text-[9px] font-mono tracking-[0.2em] bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-cyan-400">
