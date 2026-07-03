@@ -45,17 +45,29 @@ export default function Navbar() {
         </div>
         
         <nav className="flex space-x-8 text-xs font-mono tracking-wider uppercase items-center h-full">
-          <Link href="/" className={`transition-all duration-200 ${pathname === '/' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+          {/* Home Link with Dynamic Color & Underline Highlight */}
+          <Link 
+            href="/" 
+            className={`transition-all duration-200 h-full flex items-center ${
+              pathname === '/' 
+                ? 'text-cyan-400 font-bold border-b-2 border-cyan-400' 
+                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
+            }`}
+          >
             Home
           </Link>
           
-          {/* Products Dropdown */}
+          {/* Products Dropdown Tab Trigger */}
           <div 
             className="relative h-full flex items-center cursor-pointer"
             onMouseEnter={() => setProductOpen(true)}
             onMouseLeave={() => setProductOpen(false)}
           >
-            <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/products') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+            <span className={`transition-all duration-200 h-full flex items-center gap-1 ${
+              isTabActive('/products') 
+                ? 'text-cyan-400 font-bold border-b-2 border-cyan-400' 
+                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
+            }`}>
               Products ▼
             </span>
             <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-64 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${productOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
@@ -69,13 +81,17 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* New Company Dropdown */}
+          {/* Company Dropdown Tab Trigger */}
           <div 
             className="relative h-full flex items-center cursor-pointer"
             onMouseEnter={() => setCompanyOpen(true)}
             onMouseLeave={() => setCompanyOpen(false)}
           >
-            <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/company') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+            <span className={`transition-all duration-200 h-full flex items-center gap-1 ${
+              isTabActive('/company') 
+                ? 'text-cyan-400 font-bold border-b-2 border-cyan-400' 
+                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
+            }`}>
               Company ▼
             </span>
             <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-48 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${companyOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
@@ -89,13 +105,17 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Support Dropdown */}
+          {/* Support Dropdown Tab Trigger */}
           <div 
             className="relative h-full flex items-center cursor-pointer"
             onMouseEnter={() => setSupportOpen(true)}
             onMouseLeave={() => setSupportOpen(false)}
           >
-            <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/support') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+            <span className={`transition-all duration-200 h-full flex items-center gap-1 ${
+              isTabActive('/support') 
+                ? 'text-cyan-400 font-bold border-b-2 border-cyan-400' 
+                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
+            }`}>
               Support ▼
             </span>
             <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-56 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${supportOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
@@ -109,7 +129,15 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link href="/contact" className={`transition-all duration-200 ${pathname === '/contact' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+          {/* Contact Link */}
+          <Link 
+            href="/contact" 
+            className={`transition-all duration-200 h-full flex items-center ${
+              pathname === '/contact' 
+                ? 'text-cyan-400 font-bold border-b-2 border-cyan-400' 
+                : 'text-gray-400 hover:text-white border-b-2 border-transparent'
+            }`}
+          >
             Contact
           </Link>
         </nav>
