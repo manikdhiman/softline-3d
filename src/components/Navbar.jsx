@@ -20,12 +20,17 @@ const SUPPORT_ITEMS = [
   { name: 'Downloads', path: '/support/downloads' }
 ];
 
+const COMPANY_ITEMS = [
+  { name: 'About Us', path: '/company/about' },
+  { name: 'Our Journey', path: '/company/journey' }
+];
+
 export default function Navbar() {
   const pathname = usePathname();
   const [productOpen, setProductOpen] = useState(false);
   const [supportOpen, setSupportOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
 
-  // Helper function to check if a specific item or dropdown is active
   const isTabActive = (pathPrefix) => pathname.startsWith(pathPrefix);
 
   return (
@@ -44,7 +49,7 @@ export default function Navbar() {
             Home
           </Link>
           
-          {/* Products Dropdown - Dynamic Active Highlighting */}
+          {/* Products Dropdown */}
           <div 
             className="relative h-full flex items-center cursor-pointer"
             onMouseEnter={() => setProductOpen(true)}
@@ -55,24 +60,36 @@ export default function Navbar() {
             </span>
             <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-64 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${productOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
               <div className="flex flex-col space-y-2">
-                {MENU_ITEMS.map((item) => {
-                  const isItemActive = pathname === item.path || pathname.startsWith(`${item.path}/`);
-                  return (
-                    <Link 
-                      key={item.id} 
-                      href={item.path} 
-                      onClick={() => setProductOpen(false)} 
-                      className={`p-2 rounded-lg text-xs transition block ${isItemActive ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}
-                    >
-                      {item.name}
-                    </Link>
-                  );
-                })}
+                {MENU_ITEMS.map((item) => (
+                  <Link key={item.id} href={item.path} onClick={() => setProductOpen(false)} className={`p-2 rounded-lg text-xs transition block ${pathname === item.path ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}>
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Support Dropdown - Dynamic Active Highlighting */}
+          {/* New Company Dropdown */}
+          <div 
+            className="relative h-full flex items-center cursor-pointer"
+            onMouseEnter={() => setCompanyOpen(true)}
+            onMouseLeave={() => setCompanyOpen(false)}
+          >
+            <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/company') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+              Company ▼
+            </span>
+            <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-48 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${companyOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
+              <div className="flex flex-col space-y-2">
+                {COMPANY_ITEMS.map((item, idx) => (
+                  <Link key={idx} href={item.path} onClick={() => setCompanyOpen(false)} className={`p-2 rounded-lg text-xs transition block ${pathname === item.path ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}>
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Support Dropdown */}
           <div 
             className="relative h-full flex items-center cursor-pointer"
             onMouseEnter={() => setSupportOpen(true)}
@@ -83,19 +100,11 @@ export default function Navbar() {
             </span>
             <div className={`absolute top-20 left-1/2 -translate-x-1/2 w-56 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 ${supportOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
               <div className="flex flex-col space-y-2">
-                {SUPPORT_ITEMS.map((item, idx) => {
-                  const isSubItemActive = pathname === item.path;
-                  return (
-                    <Link 
-                      key={idx} 
-                      href={item.path} 
-                      onClick={() => setSupportOpen(false)} 
-                      className={`p-2 rounded-lg text-xs transition block ${isSubItemActive ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}
-                    >
-                      {item.name}
-                    </Link>
-                  );
-                })}
+                {SUPPORT_ITEMS.map((item, idx) => (
+                  <Link key={idx} href={item.path} onClick={() => setSupportOpen(false)} className={`p-2 rounded-lg text-xs transition block ${pathname === item.path ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}>
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -105,6 +114,10 @@ export default function Navbar() {
           </Link>
         </nav>
 
+        <span className="hidden sm:inline-block text-[9px] font-mono tracking-[0.2em] bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-cyan-400">
+          ESTD 2009
+        </span>
+        
       </div>
     </header>
   );
