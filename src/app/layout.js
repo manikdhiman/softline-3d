@@ -12,17 +12,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    // Add suppressHydrationWarning here to ignore browser extension injections
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} bg-[#070A13] min-h-screen flex flex-col`}>
         {/* Main Global Navbar rendered perfectly flat at root level */}
         <Navbar />
-        
-        {/* Uniform Top Offset Container buffer spacing */}
-        <div className="flex-1 pt-20 flex flex-col">
-          {children}
-        </div>
-        
-        <Loader />
+        {children}
       </body>
     </html>
   );
