@@ -1,249 +1,427 @@
-'use client';
-
 import Link from 'next/link';
+import Image from 'next/image';
 
-export default function Home() {
+// Lightweight SVG Icon Fallbacks
+const ShieldCheck = ({ className = "w-5 h-5" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+  </svg>
+);
+
+const Cpu = ({ className = "w-5 h-5" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m-2 6h2m14-6h2m-2 6h2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+  </svg>
+);
+
+const Users = ({ className = "w-5 h-5" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+  </svg>
+);
+
+const Wrench = ({ className = "w-5 h-5" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+  </svg>
+);
+
+const ArrowRight = ({ className = "w-4 h-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+  </svg>
+);
+
+const CheckCircle2 = ({ className = "w-3.5 h-3.5" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+);
+
+const Star = ({ className = "w-4 h-4" }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+  </svg>
+);
+
+const Award = ({ className = "w-4 h-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15l-2 5l2-1.5l2 1.5l-2-5m0 0A5 5 0 1 0 12 5a5 5 0 0 0 0 10z" />
+  </svg>
+);
+
+const ChevronRight = ({ className = "w-4 h-4" }) => (
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+  </svg>
+);
+
+export default function HomePage() {
+  const stats = [
+    { label: "Years of Excellence", value: "17+" },
+    { label: "Dealers Nationwide", value: "500+" },
+    { label: "Products Manufactured", value: "1M+" },
+    { label: "Service Centers", value: "150+" },
+  ];
+
+  const products = [
+    {
+      id: "coolers",
+      title: "Air Coolers",
+      desc: "Powerful and energy-efficient cooling solutions built for Indian summers — available in iron and plastic body variants.",
+      image: "/images/product-cooler.jpg",
+      badge: "Best Seller",
+      highlights: ["Iron & Plastic Options", "High Air Delivery", "Large Tank Capacity", "Corrosion Resistant"]
+    },
+    {
+      id: "tv",
+      title: "LED Televisions",
+      desc: "Crystal-clear visuals with vibrant colors and energy-efficient performance for everyday home entertainment.",
+      image: "/images/product-led-tv.jpg",
+      badge: "HD / Full HD",
+      highlights: ["Energy-Efficient Panel", "Wide Viewing Angle", "HDMI & USB Ports", "Built-in Speakers"]
+    },
+    {
+      id: "juicer",
+      title: "Juicer Mixer Grinders",
+      desc: "Versatile kitchen appliances designed for efficient juicing, mixing, and heavy-duty grinding.",
+      image: "/images/product-grinder.webp",
+      badge: "Kitchen Care",
+      highlights: ["Powerful Motor", "Stainless Steel Blades", "Multiple Speed Settings", "Overload Protection"]
+    },
+    {
+      id: "washing",
+      title: "Washing Machines",
+      desc: "Reliable and efficient washing machines engineered for fabric care, durability, and smooth performance.",
+      image: "/images/product-washing.jpg",
+      badge: "Fabric Care",
+      highlights: ["Semi & Fully Automatic", "Multiple Wash Programs", "Rust-Proof Drum", "Eco-Energy Use"]
+    },
+    {
+      id: "geyser",
+      title: "Water Geysers",
+      desc: "Fast-heating and energy-efficient water geysers for reliable hot water supply throughout winter.",
+      image: "/images/product-geyser.png",
+      badge: "Rapid Heat",
+      highlights: ["Quick Heating Tech", "Anti-Corrosion Tank", "Pressure Valve", "Safety Thermostat"]
+    },
+    {
+      id: "fan",
+      title: "Ceiling Fans",
+      desc: "Stylish and energy-efficient ceiling fans delivering powerful air circulation for year-round comfort.",
+      image: "/images/product-fan.png",
+      badge: "Low Power",
+      highlights: ["High Air Delivery", "Silent Operation", "Durable Blade Build", "Multiple Color Options"]
+    }
+  ];
+
+  const testimonials = [
+    {
+      quote: "Softline's iron cooler has been running flawlessly for two summers now. The build quality is excellent and cooling is top-tier.",
+      name: "Rajesh Kumar",
+      location: "Karnal",
+      product: "Air Cooler"
+    },
+    {
+      quote: "The LED TV display quality is outstanding — colors are crisp and vibrant. Exceptional value for money.",
+      name: "Priya Sharma",
+      location: "Panipat",
+      product: "LED Television"
+    },
+    {
+      quote: "As an authorized dealer, Softline products have the lowest return rate in my store. Customers always leave satisfied.",
+      name: "Amit Patel",
+      location: "Ambala",
+      product: "Multiple Products"
+    }
+  ];
+
   return (
-    <main className="min-h-screen text-white flex flex-col justify-between bg-[#070A13]">
+    <div className="bg-slate-50 min-h-screen text-slate-900 font-sans">
       
-      {/* SECTION 1: HERO CONTAINER DISPLAY */}
-      <section className="w-full max-w-7xl mx-auto px-6 pt-16 md:pt-24 pb-16 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-        <div>
-          <span className="text-xs font-mono tracking-[0.3em] text-cyan-400 uppercase block mb-3">
-            Welcome to Softline Industries
-          </span>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-6 uppercase">
-            PREMIUM HOUSEHOLD <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-              APPLIANCES.
-            </span>
-          </h1>
-          <p className="text-gray-400 text-base md:text-lg mb-8 max-w-lg leading-relaxed">
-            Engineering high-performance air coolers, televisions, washing machines, and home electronics with absolute integrity. Discover durability built to last.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/products/coolers" className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-xl text-center transition shadow-lg shadow-blue-600/20">
-              Explore Products
-            </Link>
-            <Link href="/contact" className="border border-white/10 hover:border-white/20 bg-white/5 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-xl text-center transition">
-              Get in Touch
-            </Link>
-          </div>
-        </div>
+      {/* 1. HERO SECTION */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-white to-slate-50 pt-12 pb-20 md:pt-20 md:pb-32 border-b border-sky-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Hero Left Text */}
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-sky-100/80 border border-sky-200 text-sky-800 text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full">
+                <Award className="w-4 h-4 text-sky-600" />
+                <span>Since 2009 — 17+ Years of Excellence</span>
+              </div>
 
-        <div className="flex justify-center items-center">
-          <div className="w-72 h-72 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-blue-600/20 to-cyan-400/10 border border-cyan-500/20 flex items-center justify-center relative animate-pulse">
-            <div className="w-56 h-56 md:w-60 md:h-60 rounded-full bg-gradient-to-br from-[#0d1527] to-[#070A13] border border-white/5 flex flex-col items-center justify-center p-6 text-center shadow-2xl">
-              <span className="text-2xl font-black text-cyan-400">17+</span>
-              <span className="text-[10px] uppercase tracking-widest text-gray-400 mt-1 font-mono">Years of Excellence</span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Engineering Tomorrow&apos;s <br className="hidden sm:inline" />
+                <span className="text-sky-600">Home Electronics</span>
+              </h1>
+
+              <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                From high-delivery air coolers to smart LED TVs, Softline Industries delivers quality-engineered home appliances trusted by millions across India.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                <Link 
+                  href="/products/coolers" 
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-medium px-7 py-3.5 rounded-xl shadow-md shadow-sky-500/20 transition duration-200"
+                >
+                  Explore Products
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link 
+                  href="/company/about" 
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-sky-50 text-slate-700 border border-slate-200 hover:border-sky-200 font-medium px-7 py-3.5 rounded-xl transition duration-200"
+                >
+                  Our Story
+                </Link>
+              </div>
+
+              {/* Trust Badges */}
+              <div className="pt-6 border-t border-sky-100/80 grid grid-cols-3 gap-4 text-left">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-sky-600 shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium text-slate-600">Durable Build</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Cpu className="w-5 h-5 text-sky-600 shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium text-slate-600">Energy Efficient</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Wrench className="w-5 h-5 text-sky-600 shrink-0" />
+                  <span className="text-xs sm:text-sm font-medium text-slate-600">Pan-India Service</span>
+                </div>
+              </div>
             </div>
+
+            {/* Hero Right Visual Card */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative mx-auto max-w-md lg:max-w-none bg-white p-4 rounded-2xl border border-sky-100 shadow-xl shadow-sky-100/50">
+                <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden bg-slate-100">
+                  <Image 
+                    src="/images/cooler.webp" 
+                    alt="Softline Industries Cooler Showcase" 
+                    fill 
+                    className="object-cover hover:scale-105 transition duration-500" 
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex items-end p-6">
+                    <div className="text-white">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-sky-300">Featured Innovation</span>
+                      <h3 className="text-xl font-bold">Desert Cooling Series</h3>
+                      <p className="text-xs text-slate-200 mt-1">High air delivery built for tough Indian summers.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: LIVE CORPORATE STATS PANEL */}
-      <section className="w-full bg-[#0d1527]/40 border-t border-b border-white/10 py-12 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div className="flex flex-col items-center">
-            <span className="text-2xl text-cyan-400 mb-2">🏅</span>
-            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">17+</div>
-            <div className="text-xs text-gray-400 font-mono mt-1 uppercase tracking-wider">Years of Excellence</div>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="text-2xl text-cyan-400 mb-2">👥</span>
-            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">1,000+</div>
-            <div className="text-xs text-gray-400 font-mono mt-1 uppercase tracking-wider">Dealers Nationwide</div>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="text-2xl text-cyan-400 mb-2">🏭</span>
-            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">5M+</div>
-            <div className="text-xs text-gray-400 font-mono mt-1 uppercase tracking-wider">Products Manufactured</div>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="text-2xl text-cyan-400 mb-2">🛡️</span>
-            <div className="text-3xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">500+</div>
-            <div className="text-xs text-gray-400 font-mono mt-1 uppercase tracking-wider">Service Centers</div>
+
+      {/* 2. STATS BAR */}
+      <section className="bg-white border-b border-sky-100 py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-sky-100">
+            {stats.map((stat, idx) => (
+              <div key={idx} className={`pt-4 lg:pt-0 ${idx % 2 === 1 ? 'border-l lg:border-l-0 border-sky-100' : ''}`}>
+                <p className="text-3xl sm:text-4xl font-extrabold text-sky-600 tracking-tight">{stat.value}</p>
+                <p className="text-sm font-medium text-slate-600 mt-1">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* SECTION 3: TRUST & INNOVATION FEATURES */}
-      <section className="w-full max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <span className="text-xs font-mono bg-blue-600/10 border border-blue-500/20 px-3 py-1 rounded text-cyan-400 uppercase tracking-widest">
-            Since 2009
-          </span>
-          <h2 className="text-3xl md:text-4xl font-black mt-4 uppercase tracking-tight leading-tight">
-            Built on Trust, <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Driven by Innovation</span>
+
+      {/* 3. PRODUCT CATALOG GRID */}
+      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <span className="text-sky-600 text-sm font-semibold uppercase tracking-wider">Our Product Range</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mt-2">
+            Engineered for Comfort, Built for Life
           </h2>
-          <p className="text-gray-400 text-xs md:text-sm font-mono leading-relaxed mt-4">
-            Founded in 2009 in Assandh, Haryana, Softline Industries has grown from iron air coolers to a trusted range of home appliances. Quality manufacturing, reliable components, and customer-focused design are at the heart of everything we do.
+          <p className="text-slate-600 mt-3 text-base sm:text-lg">
+            Explore our wide lineup of durable consumer electronics and home appliances manufactured in Assandh, Haryana.
           </p>
-          
-          <ul className="mt-6 space-y-3 font-mono text-xs text-gray-300">
-            <li className="flex items-center gap-2"><span className="text-cyan-400">✓</span> Quality Manufacturing at Every Step</li>
-            <li className="flex items-center gap-2"><span className="text-cyan-400">✓</span> Durable & Reliable Components</li>
-            <li className="flex items-center gap-2"><span className="text-cyan-400">✓</span> Customer-Focused Design</li>
-            <li className="flex items-center gap-2"><span className="text-cyan-400">✓</span> Responsible & Eco-Friendly Processes</li>
-          </ul>
+        </div>
 
-          <div className="mt-8">
-            <Link href="/company/about" className="inline-flex items-center bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl transition shadow-lg shadow-blue-600/20">
-              Learn More About Us →
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((item) => (
+            <div 
+              key={item.id} 
+              className="bg-white rounded-2xl border border-sky-100 hover:border-sky-300 shadow-sm hover:shadow-md transition duration-300 flex flex-col overflow-hidden group"
+            >
+              {/* Image Container */}
+              <div className="relative h-52 bg-slate-100 overflow-hidden">
+                <Image 
+                  src={item.image} 
+                  alt={item.title} 
+                  fill 
+                  className="object-cover group-hover:scale-105 transition duration-500"
+                />
+                <span className="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-sky-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-sky-100">
+                  {item.badge}
+                </span>
+              </div>
+
+              {/* Details */}
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition">
+                  {item.title}
+                </h3>
+                <p className="text-slate-600 text-sm mb-4 line-clamp-2">
+                  {item.desc}
+                </p>
+
+                <ul className="space-y-2 mb-6 mt-auto">
+                  {item.highlights.map((feat, i) => (
+                    <li key={i} className="flex items-center gap-2 text-xs text-slate-600">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-sky-500 shrink-0" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link 
+                  href={`/products/${item.id}`} 
+                  className="w-full inline-flex items-center justify-center gap-1.5 bg-sky-50 hover:bg-sky-600 text-sky-700 hover:text-white font-semibold text-sm py-2.5 rounded-lg border border-sky-100 hover:border-sky-600 transition duration-200"
+                >
+                  View Details
+                  <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+
+      {/* 4. COMPANY HISTORY & TRUST */}
+      <section className="bg-white border-y border-sky-100 py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div className="lg:col-span-6 space-y-6">
+              <span className="text-sky-600 text-sm font-semibold uppercase tracking-wider">Since 2009</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 leading-tight">
+                Built on Trust, Driven by Precision Engineering
+              </h2>
+              <p className="text-slate-600 text-base leading-relaxed">
+                Founded in Assandh, Haryana, Softline Industries started with high-durability iron air coolers. Over the last 17+ years, we have expanded into state-of-the-art facilities producing LED TVs, Washing Machines, Geysers, and Kitchen Appliances.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="bg-slate-50 p-4 rounded-xl border border-sky-100">
+                  <h4 className="font-semibold text-slate-900 text-sm">Quality First</h4>
+                  <p className="text-xs text-slate-500 mt-1">Rigorous quality checks at every step of manufacturing.</p>
+                </div>
+                <div className="bg-slate-50 p-4 rounded-xl border border-sky-100">
+                  <h4 className="font-semibold text-slate-900 text-sm">Pan-India Support</h4>
+                  <p className="text-xs text-slate-500 mt-1">Responsive customer support and service center grid.</p>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <Link 
+                  href="/company/about" 
+                  className="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 font-semibold text-sm group"
+                >
+                  Learn more about our journey 
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Visual Box */}
+            <div className="lg:col-span-6">
+              <div className="relative rounded-2xl overflow-hidden border border-sky-100 shadow-md h-80 sm:h-96 bg-slate-100">
+                <Image 
+                  src="/images/hero-manufacturing.jpg" 
+                  alt="Softline Manufacturing Facility" 
+                  fill 
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-slate-900/20" />
+                <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-sky-100 shadow-lg max-w-xs">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-sky-100 rounded-lg text-sky-600">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-500 font-medium">Headquarters</p>
+                      <p className="text-sm font-bold text-slate-900">Assandh, Haryana-132039</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      {/* 5. TESTIMONIALS */}
+      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="text-sky-600 text-sm font-semibold uppercase tracking-wider">Testimonials</span>
+          <h2 className="text-3xl font-bold text-slate-900 mt-2">What Our Customers & Partners Say</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((item, idx) => (
+            <div key={idx} className="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="flex gap-1 text-amber-400 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-amber-400" />
+                  ))}
+                </div>
+                <p className="text-slate-600 text-sm italic mb-6">
+                  &ldquo;{item.quote}&rdquo;
+                </p>
+              </div>
+              <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                <div>
+                  <p className="font-bold text-slate-900 text-sm">{item.name}</p>
+                  <p className="text-xs text-slate-500">{item.location}</p>
+                </div>
+                <span className="text-xs font-semibold bg-sky-50 text-sky-600 px-2.5 py-1 rounded-md border border-sky-100">
+                  {item.product}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+
+      {/* 6. CALL TO ACTION */}
+      <section className="bg-gradient-to-r from-sky-600 to-sky-700 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-bold">Ready to Experience Softline Quality?</h2>
+          <p className="text-sky-100 max-w-2xl mx-auto text-base sm:text-lg">
+            Connect with our team to inquire about dealership opportunities, product catalogs, or customer support.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2">
+            <Link 
+              href="/support/complaint" 
+              className="bg-white text-sky-700 hover:bg-sky-50 font-semibold px-8 py-3.5 rounded-xl shadow-lg transition"
+            >
+              Contact Support
+            </Link>
+            <Link 
+              href="/support/downloads" 
+              className="bg-sky-800/60 hover:bg-sky-800 text-white font-semibold px-8 py-3.5 border border-sky-400/40 rounded-xl transition"
+            >
+              Download Catalog
             </Link>
           </div>
         </div>
-
-        {/* Mock Factory Operations Visual Block Container */}
-        <div className="relative bg-[#0d1527]/60 border border-white/10 p-4 rounded-2xl shadow-2xl">
-          <div className="w-full h-64 bg-white/5 rounded-xl flex flex-col items-center justify-center border border-dashed border-white/10 text-center p-6">
-            <span className="text-xs font-mono text-gray-400 block uppercase tracking-widest mb-2">[ Manufacturing Facility Viewport ]</span>
-            <span className="text-[10px] text-gray-500 font-mono">Visual asset maps framing active high-speed automated appliance production assemblies</span>
-          </div>
-          <div className="absolute -bottom-4 -left-4 bg-[#0d1527] border border-white/10 text-white p-4 rounded-xl shadow-2xl font-mono text-center">
-            <div className="text-lg font-black text-cyan-400">17+</div>
-            <div className="text-[9px] uppercase tracking-wider text-gray-500">Years Exp</div>
-          </div>
-        </div>
       </section>
 
-      {/* SECTION 4: TESTIMONIAL FEEDBACK REVIEWS */}
-      <section className="w-full bg-[#0d1527]/20 border-t border-white/5 py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-black uppercase tracking-tight">What Our Customers Say</h2>
-            <p className="text-xs font-mono text-gray-400 mt-2">Hear from the people who trust Softline Industries for their home electronics.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-[#070A13]/60 border border-white/10 p-6 rounded-xl flex flex-col justify-between shadow-xl">
-              <div>
-                <div className="text-cyan-400 text-xs tracking-wider mb-4">⭐⭐⭐⭐⭐</div>
-                <p className="text-xs text-gray-400 font-mono leading-relaxed">
-                  &ldquo;Softline's iron cooler has been running flawlessly for two summers now. The build quality is excellent and the cooling is very effective even in peak heat. Highly recommended.&rdquo;
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-white/5 flex items-center space-x-3 font-mono text-xs">
-                <div className="w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">RK</div>
-                <div>
-                  <div className="font-bold text-white">Rajesh Kumar</div>
-                  <div className="text-[10px] text-gray-500">Karnal · Air Cooler</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-[#070A13]/60 border border-white/10 p-6 rounded-xl flex flex-col justify-between shadow-xl">
-              <div>
-                <div className="text-cyan-400 text-xs tracking-wider mb-4">⭐⭐⭐⭐⭐</div>
-                <p className="text-xs text-gray-400 font-mono leading-relaxed">
-                  &ldquo;The LED TV picture quality is outstanding — colours are vivid and the display is very clear. Great value for money and the build feels premium.&rdquo;
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-white/5 flex items-center space-x-3 font-mono text-xs">
-                <div className="w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">PS</div>
-                <div>
-                  <div className="font-bold text-white">Priya Sharma</div>
-                  <div className="text-[10px] text-gray-500">Panipat · LED Television</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-[#070A13]/60 border border-white/10 p-6 rounded-xl flex flex-col justify-between shadow-xl">
-              <div>
-                <div className="text-cyan-400 text-xs tracking-wider mb-4">⭐⭐⭐⭐⭐</div>
-                <p className="text-xs text-gray-400 font-mono leading-relaxed">
-                  &ldquo;As a dealer for Softline products, I can confidently say their coolers and washing machines have the lowest return rate in my store. Customers are always satisfied.&rdquo;
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-white/5 flex items-center space-x-3 font-mono text-xs">
-                <div className="w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">AP</div>
-                <div>
-                  <div className="font-bold text-white">Amit Patel</div>
-                  <div className="text-[10px] text-gray-500">Ambala · Multiple Products</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5: MASTER ENTERPRISE FOOTER SYSTEM */}
-      <footer className="w-full bg-[#090d16] border-t border-white/10 pt-16 pb-8 text-white font-mono">
-        <div className="max-w-7xl mx-auto px-6">
-          
-          {/* Upper Footer Action Row */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-12 border-b border-white/10">
-            <div className="lg:col-span-7">
-              <h2 className="text-2xl font-black uppercase tracking-tight">Ready to Experience Quality?</h2>
-              <p className="text-xs text-gray-400 mt-1">Connect with our team to discuss your requirements or find a dealer near you.</p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Link href="/contact" className="bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition">
-                  Contact Us →
-                </Link>
-                <Link href="/contact" className="border border-white/10 hover:border-white/20 px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition bg-white/5">
-                  Find a Dealer
-                </Link>
-              </div>
-            </div>
-
-            {/* Newsletter Subscription Box */}
-            <div className="lg:col-span-5 bg-[#070A13] border border-white/10 p-5 rounded-xl">
-              <h4 className="text-xs font-bold uppercase tracking-wide mb-1 text-white">Stay Updated</h4>
-              <p className="text-[11px] text-gray-500 mb-3">Subscribe to our newsletter for product launches and news.</p>
-              <form onSubmit={(e) => { e.preventDefault(); alert('Subscription catalog log loaded.'); }} className="flex gap-2">
-                <input type="email" required placeholder="Enter your email" className="flex-1 bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-xs text-white outline-none focus:border-cyan-400" />
-                <button type="submit" className="bg-blue-600 hover:bg-blue-500 px-4 rounded-lg text-white transition flex items-center justify-center">
-                  ➔
-                </button>
-              </form>
-            </div>
-          </div>
-
-          {/* Link Catalog Layout Blocks */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 text-xs">
-            <div className="space-y-4">
-              <h4 className="font-bold text-white uppercase tracking-wider">Softline Industries</h4>
-              <p className="text-gray-500 text-[11px] leading-relaxed">Leading manufacturer of consumer electronics and home appliances with state-of-the-art manufacturing facilities.</p>
-              <div className="text-[11px] text-gray-400 space-y-2">
-                <div>📍 Near G S Farm House, Salwan Road, Assandh, Haryana-132039</div>
-                <div>📞 +91 8295433063</div>
-                <div className="truncate">✉️ softlineindustriesknl@gmail.com</div>
-              </div>
-            </div>
-
-            <div className="flex flex-col space-y-2">
-              <h4 className="font-bold text-white uppercase tracking-wider mb-2">Products</h4>
-              <Link href="/products/coolers" className="text-gray-400 hover:text-white transition">Air Coolers</Link>
-              <Link href="/products/televisions" className="text-gray-400 hover:text-white transition">LED Televisions</Link>
-              <Link href="/products/mixer-grinders" className="text-gray-400 hover:text-white transition">Juicer Mixer Grinder</Link>
-              <Link href="/products/washing-machines" className="text-gray-400 hover:text-white transition">Washing Machines</Link>
-              <Link href="/products/geysers" className="text-gray-400 hover:text-white transition">Water Geysers</Link>
-              <Link href="/products/fans" className="text-gray-400 hover:text-white transition">Ceiling Fans</Link>
-            </div>
-
-            <div className="flex flex-col space-y-2">
-              <h4 className="font-bold text-white uppercase tracking-wider mb-2">Company</h4>
-              <Link href="/company/about" className="text-gray-400 hover:text-white transition">About Us</Link>
-              <Link href="/company/journey" className="text-gray-400 hover:text-white transition">Our Journey</Link>
-            </div>
-
-            <div className="flex flex-col space-y-2">
-              <h4 className="font-bold text-white uppercase tracking-wider mb-2">Support</h4>
-              <Link href="/support/faqs" className="text-gray-400 hover:text-white transition">FAQs</Link>
-              <Link href="/support/complaint" className="text-gray-400 hover:text-white transition">File a Complaint</Link>
-              <Link href="/support/downloads" className="text-gray-400 hover:text-white transition">Downloads</Link>
-              <Link href="/support/e-waste" className="text-gray-400 hover:text-white transition">E-Waste Policy</Link>
-            </div>
-          </div>
-
-          <div className="text-center text-[10px] text-gray-600 border-t border-white/5 pt-6">
-            © 2026 Softline Industries. All rights reserved.
-          </div>
-
-        </div>
-      </footer>
-
-    </main>
+    </div>
   );
 }

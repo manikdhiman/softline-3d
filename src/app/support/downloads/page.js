@@ -10,27 +10,27 @@ export default function DownloadsPage() {
   ];
 
   return (
-    <main className="max-w-4xl mx-auto w-full p-6 md:p-12 text-white flex-1 flex flex-col justify-center pt-28">
+    <main className="max-w-4xl mx-auto w-full p-6 md:p-12 text-slate-900 flex-1 flex flex-col justify-center pt-28">
       <div className="mb-6">
-        <Link href="/" className="text-xs font-mono text-gray-500 hover:text-cyan-400 transition">← Return to Home</Link>
+        <Link href="/" className="text-xs font-mono text-slate-500 hover:text-sky-600 transition">← Return to Home</Link>
       </div>
 
-      <div className="bg-[#0d1527]/40 border border-white/10 p-6 md:p-8 rounded-2xl space-y-6">
+      <div className="bg-white border border-sky-100 p-6 md:p-8 rounded-2xl space-y-6 shadow-sm">
         <div>
-          <h1 className="text-3xl font-black uppercase tracking-tight text-white">Resource Downloads</h1>
-          <p className="text-xs text-gray-400 font-mono mt-1">Access verified official equipment user manuals and technical data sheets below.</p>
+          <h1 className="text-3xl font-black uppercase tracking-tight text-slate-900">Resource Downloads</h1>
+          <p className="text-xs text-slate-500 font-mono mt-1">Access verified official equipment user manuals.</p>
         </div>
         
-        <hr className="border-white/10" />
+        <hr className="border-slate-100" />
         
         <div className="space-y-3 font-mono text-xs">
           {FILES.map((file, idx) => (
-            <div key={idx} className="flex justify-between items-center p-4 bg-[#070A13]/60 border border-white/5 rounded-xl hover:border-cyan-400/30 transition duration-200">
+            <div key={idx} className="flex justify-between items-center p-4 bg-slate-50 border border-slate-200 rounded-xl">
               <div className="flex flex-col">
-                <span className="text-gray-200 font-bold">{file.title}</span>
-                <span className="text-[10px] text-gray-500 uppercase mt-0.5">{file.size} · PDF Document</span>
+                <span className="text-slate-900 font-bold">{file.title}</span>
+                <span className="text-[10px] text-slate-500 uppercase mt-0.5">{file.size} · PDF Document</span>
               </div>
-              <button onClick={() => alert('Downloading resource file asset...')} className="text-cyan-400 hover:text-white transition font-bold border border-cyan-400/20 hover:bg-cyan-400/10 px-4 py-2 rounded-lg text-[11px] uppercase tracking-wider">
+              <button onClick={() => alert('Downloading file...')} className="bg-sky-500 hover:bg-sky-600 text-white font-bold px-4 py-2 rounded-lg text-[11px] uppercase transition">
                 Download ↓
               </button>
             </div>

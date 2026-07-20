@@ -4,142 +4,105 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
-const MENU_ITEMS = [
-  { id: 'cooler', name: 'Air Coolers', path: '/products/coolers' },
-  { id: 'tv', name: 'LED Televisions', path: '/products/televisions' },
-  { id: 'washing', name: 'Washing Machines', path: '/products/washing-machines' },
-  { id: 'grinder', name: 'Mixer Grinders', path: '/products/mixer-grinders' },
-  { id: 'geyser', name: 'Water Geysers', path: '/products/geysers' },
-  { id: 'fan', name: 'Ceiling Fans', path: '/products/fans' }
-];
-
-const SUPPORT_ITEMS = [
-  { name: 'FAQs', path: '/support/faqs' },
-  { name: 'File a Complaint', path: '/support/complaint' },
-  { name: 'E-Waste Policy', path: '/support/e-waste' },
-  { name: 'Downloads', path: '/support/downloads' }
-];
-
-const COMPANY_ITEMS = [
-  { name: 'About Us', path: '/company/about' },
-  { name: 'Our Journey', path: '/company/journey' }
-];
-
 export default function Navbar() {
   const pathname = usePathname();
-  const [productOpen, setProductOpen] = useState(false);
-  const [supportOpen, setSupportOpen] = useState(false);
-  const [companyOpen, setCompanyOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
-  const isTabActive = (pathPrefix) => pathname.startsWith(pathPrefix);
+  const isActive = (path) => pathname === path || pathname.startsWith(`${path}/`);
 
   return (
-    <header className="w-full bg-[#070A13]/60 backdrop-blur-xl border-b border-white/10 fixed top-0 left-0 right-0 z-50">
+    <header className="w-full bg-white/90 backdrop-blur-md border-b border-sky-100 fixed top-0 left-0 right-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
         
+        {/* BRAND LOGO */}
         <div className="flex items-center space-x-3">
-          <div className="w-2.5 h-2.5 bg-cyan-400 rounded-full animate-pulse" />
-          <Link href="/" className="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 select-none">
+          <div className="w-2.5 h-2.5 bg-sky-500 rounded-full animate-pulse" />
+          <Link href="/" className="text-xl font-black tracking-widest text-slate-900 select-none">
             SOFTLINE
           </Link>
         </div>
-        
-        <nav className="flex space-x-8 text-xs font-mono tracking-wider uppercase items-center h-full">
+
+        {/* NAVIGATION LINKS */}
+        <nav className="hidden md:flex space-x-8 text-xs font-mono tracking-wider uppercase items-center h-full">
           
-          {/* HOME LINK: Tight padding with inline underline anchor */}
+          {/* HOME LINK */}
           <div className="relative pb-1.5 flex items-center">
             <Link 
               href="/" 
-              className={`transition-all duration-200 ${pathname === '/' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}
+              className={`transition-colors duration-200 ${isActive('/') && pathname === '/' ? 'text-sky-600 font-bold' : 'text-slate-600 hover:text-sky-600'}`}
             >
               Home
             </Link>
-            {pathname === '/' && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 rounded-full" />}
+            {pathname === '/' && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-sky-500 rounded-full" />}
           </div>
-          
-          {/* PRODUCTS DROPDOWN: Tight padding with inline underline anchor */}
+
+          {/* PRODUCTS DROPDOWN */}
           <div 
-            className="relative pb-1.5 flex items-center cursor-pointer"
-            onMouseEnter={() => setProductOpen(true)}
-            onMouseLeave={() => setProductOpen(false)}
+            className="relative pb-1.5 flex items-center cursor-pointer group"
+            onMouseEnter={() => setActiveDropdown('products')}
+            onMouseLeave={() => setActiveDropdown(null)}
           >
-            <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/products') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+            <span className={`transition-colors duration-200 ${isActive('/products') ? 'text-sky-600 font-bold' : 'text-slate-600 group-hover:text-sky-600'}`}>
               Products ▼
             </span>
-            {isTabActive('/products') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 rounded-full" />}
-            
-            <div className={`absolute top-8 left-1/2 -translate-x-1/2 w-64 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 z-50 ${productOpen ? 'opacity-100 visible translate-y-2' : 'opacity-0 invisible translate-y-0'}`}>
-              <div className="flex flex-col space-y-2">
-                {MENU_ITEMS.map((item) => (
-                  <Link key={item.id} href={item.path} onClick={() => setProductOpen(false)} className={`p-2 rounded-lg text-xs transition block ${pathname === item.path ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}>
-                    {item.name}
-                  </Link>
-                ))}
+            {isActive('/products') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-sky-500 rounded-full" />}
+
+            {activeDropdown === 'products' && (
+              <div className="absolute top-full left-0 w-48 bg-white border border-sky-100 shadow-xl rounded-xl p-2 space-y-1 font-mono text-[11px] z-50">
+                <Link href="/products/coolers" className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-600">Air Coolers</Link>
+                <Link href="/products/televisions" className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-600">Smart TVs</Link>
+                <Link href="/products/washing" className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-600">Washing Machines</Link>
               </div>
-            </div>
+            )}
           </div>
 
-          {/* COMPANY DROPDOWN: Tight padding with inline underline anchor */}
+          {/* COMPANY DROPDOWN */}
           <div 
-            className="relative pb-1.5 flex items-center cursor-pointer"
-            onMouseEnter={() => setCompanyOpen(true)}
-            onMouseLeave={() => setCompanyOpen(false)}
+            className="relative pb-1.5 flex items-center cursor-pointer group"
+            onMouseEnter={() => setActiveDropdown('company')}
+            onMouseLeave={() => setActiveDropdown(null)}
           >
-            <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/company') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+            <span className={`transition-colors duration-200 ${isActive('/company') ? 'text-sky-600 font-bold' : 'text-slate-600 group-hover:text-sky-600'}`}>
               Company ▼
             </span>
-            {isTabActive('/company') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 rounded-full" />}
-            
-            <div className={`absolute top-8 left-1/2 -translate-x-1/2 w-48 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 z-50 ${companyOpen ? 'opacity-100 visible translate-y-2' : 'opacity-0 invisible translate-y-0'}`}>
-              <div className="flex flex-col space-y-2">
-                {COMPANY_ITEMS.map((item, idx) => (
-                  <Link key={idx} href={item.path} onClick={() => setCompanyOpen(false)} className={`p-2 rounded-lg text-xs transition block ${pathname === item.path ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}>
-                    {item.name}
-                  </Link>
-                ))}
+            {isActive('/company') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-sky-500 rounded-full" />}
+
+            {activeDropdown === 'company' && (
+              <div className="absolute top-full left-0 w-48 bg-white border border-sky-100 shadow-xl rounded-xl p-2 space-y-1 font-mono text-[11px] z-50">
+                <Link href="/company/about" className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-600">About Us</Link>
+                <Link href="/company/journey" className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-600">Our Journey</Link>
               </div>
-            </div>
+            )}
           </div>
 
-          {/* SUPPORT DROPDOWN: Tight padding with inline underline anchor */}
+          {/* SUPPORT DROPDOWN */}
           <div 
-            className="relative pb-1.5 flex items-center cursor-pointer"
-            onMouseEnter={() => setSupportOpen(true)}
-            onMouseLeave={() => setSupportOpen(false)}
+            className="relative pb-1.5 flex items-center cursor-pointer group"
+            onMouseEnter={() => setActiveDropdown('support')}
+            onMouseLeave={() => setActiveDropdown(null)}
           >
-            <span className={`transition-all duration-200 flex items-center gap-1 ${isTabActive('/support') ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}>
+            <span className={`transition-colors duration-200 ${isActive('/support') ? 'text-sky-600 font-bold' : 'text-slate-600 group-hover:text-sky-600'}`}>
               Support ▼
             </span>
-            {isTabActive('/support') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 rounded-full" />}
-            
-            <div className={`absolute top-8 left-1/2 -translate-x-1/2 w-56 bg-[#0d1527] border border-white/10 p-4 rounded-xl shadow-2xl transition-all duration-200 z-50 ${supportOpen ? 'opacity-100 visible translate-y-2' : 'opacity-0 invisible translate-y-0'}`}>
-              <div className="flex flex-col space-y-2">
-                {SUPPORT_ITEMS.map((item, idx) => (
-                  <Link key={idx} href={item.path} onClick={() => setSupportOpen(false)} className={`p-2 rounded-lg text-xs transition block ${pathname === item.path ? 'bg-cyan-500/10 text-cyan-400 font-bold' : 'hover:bg-white/5 text-gray-300 hover:text-white'}`}>
-                    {item.name}
-                  </Link>
-                ))}
+            {isActive('/support') && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-sky-500 rounded-full" />}
+
+            {activeDropdown === 'support' && (
+              <div className="absolute top-full left-0 w-52 bg-white border border-sky-100 shadow-xl rounded-xl p-2 space-y-1 font-mono text-[11px] z-50">
+                <Link href="/support/complaint" className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-600">File a Complaint</Link>
+                <Link href="/support/faqs" className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-600">FAQs</Link>
+                <Link href="/support/e-waste" className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-600">E-Waste Policy</Link>
+                <Link href="/support/downloads" className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-sky-50 hover:text-sky-600">Downloads</Link>
               </div>
-            </div>
+            )}
           </div>
 
-          {/* CONTACT LINK: Tight padding with inline underline anchor */}
-          <div className="relative pb-1.5 flex items-center">
-            <Link 
-              href="/contact" 
-              className={`transition-all duration-200 ${pathname === '/contact' ? 'text-cyan-400 font-bold' : 'text-gray-400 hover:text-white'}`}
-            >
-              Contact
-            </Link>
-            {pathname === '/contact' && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-cyan-400 rounded-full" />}
-          </div>
-          
         </nav>
 
-        <span className="hidden sm:inline-block text-[9px] font-mono tracking-[0.2em] bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-cyan-400">
+        {/* ESTABLISHED BADGE */}
+        <span className="text-[10px] font-mono tracking-[0.2em] bg-sky-50 border border-sky-200 px-4 py-1.5 rounded-full text-sky-700 font-bold">
           ESTD 2009
         </span>
-        
+
       </div>
     </header>
   );
